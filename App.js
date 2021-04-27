@@ -3,14 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 
+
 const Texto = () =>{
   /*Para hacer que cambie el texto hay que manderla la funcion como propiedad*/
+ /*Se usara el componenete text como componente papa*/
  
-  const [texto, setTexto] = useState("Hola mundoo")
-   const updateText = () =>{
-    setTexto('Adios mundito')
-  }
-  return(  
+ const [texto, setTexto] = useState("Hola mundo!") 
+ const updateText = () =>{
+  setTexto("Adios :D")
+}
+ return(
     <Text onPress={updateText} >{texto}</Text>
   )
 }
@@ -20,6 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
      <Texto/>
+    
       
     </View>
   );
