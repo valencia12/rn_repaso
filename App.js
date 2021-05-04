@@ -4,13 +4,17 @@ import { useState } from 'react';
 
 
 const Texto = ({style}) =>{
+
   /*Para hacer que cambie el texto hay que manderla la funcion como propiedad*/
  /*Se usara el componenete text como componente papa*/
- const text1 = "Hola mundo!!"
- const text2 = "Adios :D"
+
+
+ const text1 = "Hola mundo!!!"
+ const text2 = "Adios :'D"
 
  const [texto, setTexto] = useState(text1) 
 
+ 
  const updateText = () =>{
   setTexto(text2)
 
@@ -36,7 +40,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   Texto:{
-
     fontSize: 25,
     color: 'white',
     height: 100,
@@ -56,7 +59,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: 'row-reverse',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
