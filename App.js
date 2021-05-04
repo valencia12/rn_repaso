@@ -1,67 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { useState } from 'react';
 
 
-const Texto = ({style}) =>{
+const width = Dimensions.get('window').width /*Aqui se obtiene el ancho del dispositivo con Dimensions.  */
+//const {width, height} = Dimensions.get('window')
 
-  /*Para hacer que cambie el texto hay que manderla la funcion como propiedad*/
- /*Se usara el componenete text como componente papa*/
+//Shadow Variable, tiene el mismo nombre las variables. Pero se toma el valor que hace referencia
 
-
- const text1 = "Hola mundo!!!"
- const text2 = "Adios :'D"
-
- const [texto, setTexto] = useState(text1) 
-
- 
- const updateText = () =>{
-  setTexto(text2)
-
-  if(texto == text2){
-    setTexto(text1)
-  }
-}
- return(
-    <Text style={[styles.Texto, style]} onPress={updateText} >{texto}</Text>
-  )
-}
-
-
+//Buena practica no tener tantas, variables como shadows, por que no se confunde.
 export default function App() {
+  //Aqui se cambia, y se envia. Se actualiza y a la misma vez se actualiza 
+  const [text, setText] = useState('Happy Snorlax')
+
   return (
     <View style={styles.container}>
-     <Texto style={styles.red}/>
-     <Texto style={styles.green}/>
-     <Texto style={styles.blue}/>
+     <Text>Texto: {text} </Text>
+     <TextInput style={styles.input}  
+                placeholder='Write a message' 
+                onChangeText = {t => setText(t)}
+                defaultValue= {text} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  Texto:{
-    fontSize: 25,
-    color: 'white',
-    height: 100,
-    width: 100
-  },
-  red:{ //3 + 2 + 1 = 6
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  green:{
-    flex: 2,
-    backgroundColor: 'green',
-  },
-  blue:{
-    flex: 3,
-    backgroundColor: 'blue',
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input:{
+    height: 40,
+    width: width,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    textAlign: 'center'
+  }
   
 });
