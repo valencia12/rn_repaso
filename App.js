@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Button, TouchableHighlight, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
 
@@ -24,15 +24,14 @@ export default function App() {
                 defaultValue= {text}
       /> 
 
-      <TouchableHighlight
-        underlayColor={'#999'}
-        activeOpacity={0.9}
+      <TouchableNativeFeedback
+        background = {TouchableNativeFeedback.Ripple('#00F', true)}
         onPress={() => {
         setSubmit(text)
         alert('Texto enviado')
       }}>
-      <Text>Aceptar</Text>
-      </TouchableHighlight>
+       <View style={styles.view}><Text>Aceptar</Text></View>
+      </TouchableNativeFeedback>
     
     </View>
     
@@ -40,6 +39,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  view:{
+    flex:0.5
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
