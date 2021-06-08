@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Button } from 'react-native';
 import { useState } from 'react';
 
 
@@ -11,15 +11,23 @@ const width = Dimensions.get('window').width /*Aqui se obtiene el ancho del disp
 //Buena practica no tener tantas, variables como shadows, por que no se confunde.
 export default function App() {
   //Aqui se cambia, y se envia. Se actualiza y a la misma vez se actualiza 
+  //U
+  
   const [text, setText] = useState('Happy Snorlax')
-
+  const [submit, setSubmit] = useState('')
   return (
     <View style={styles.container}>
      <Text>Texto: {text} </Text>
      <TextInput style={styles.input}  
                 placeholder='Write a message' 
                 onChangeText = {t => setText(t)}
-                defaultValue= {text} />
+                defaultValue= {text}
+      /> 
+
+      <Button onPress={() => {
+        setSubmit(text)
+        alert('Felicidades contratado')
+      }} title="Enviar" />
     </View>
   );
 }
