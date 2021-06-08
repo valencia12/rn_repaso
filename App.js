@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Button, TouchableHighlight } from 'react-native';
 import { useState } from 'react';
 
 
@@ -24,11 +24,18 @@ export default function App() {
                 defaultValue= {text}
       /> 
 
-      <Button onPress={() => {
+      <TouchableHighlight
+        underlayColor={'#999'}
+        activeOpacity={0.9}
+        onPress={() => {
         setSubmit(text)
-        alert('Felicidades contratado')
-      }} title="Enviar" />
+        alert('Texto enviado')
+      }}>
+      <Text>Aceptar</Text>
+      </TouchableHighlight>
+    
     </View>
+    
   );
 }
 
