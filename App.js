@@ -1,27 +1,39 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, ActivityIndicator, View, FlatList} from 'react-native';
+import { StyleSheet, Alert, View, FlatList, Button} from 'react-native';
 import { useState } from 'react';
 
 
 const width = Dimensions.get('window').width 
-
+const crearDialogo = () => Alert.alert(
+  'Titulo',
+  'Subtitulo o mensajes que podemos agregar a este dialogo..'
+  [
+    {
+      text: 'Canelar',
+      onPress: ()=> {},
+      style: "cancel",
+    },
+    {
+      text: 'Aceptar',
+      onPress: () => console.log('boton presionado')
+    }
+  ],
+  {cancelable: false},
+)
 
 export default function App() {
- 
+  const [modal, setModal] = setState(false)
   
-
-
   return (
-    <View style={styles.container}>
-        <ActivityIndicator size="large" color ="#0000ff" />
+    <View>
+      <Button title = "Abrir dialogo" onPress = {crearDialogo}/>
     </View>
-    //Importante tener un KeyExtractor and, render Item
   );
+
 }
 
 const styles = StyleSheet.create({
   center:{
-    {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center'
