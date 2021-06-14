@@ -49,7 +49,7 @@ export default function App() {
     />
     
     </View>
-    
+    //Importante tener un KeyExtractor and, render Item
   );
 }
 
