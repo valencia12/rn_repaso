@@ -19,11 +19,21 @@ export default function App() {
     <View style={styles.container}>
       <FlatList style={style.container}
       data={[
-        {key: 1},
-        {key: 2},
-        {key: 3},
-        {key: 4},
-        {key: 5},
+        {key: '1', name:'Jorge'},
+        {key: '2', name:'Miranda'},
+        {key: '3', name:'Ruben'},
+        {key: '4', name:'Valencia'},
+        {key: '5', name:'Abri'},
+        {key: '6', name:'Jorge'},
+        {key: '7', name:'Miranda'},
+        {key: '8', name:'Ruben'},
+        {key: '9', name:'Valencia'},
+        {key: '10', name:'Abri'},
+        {key: '11', name:'Jorge'},
+        {key: '12', name:'Miranda'},
+        {key: '13', name:'Ruben'},
+        {key: '14', name:'Valencia'},
+        {key: '15', name:'Abri'},
       ]}
       renderItem={({item}) => <Text>{item.key}</Text>} 
       />
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 10
   },
   input:{
     height: 40,
@@ -50,6 +61,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     textAlign: 'center'
   },
+  item:{
+    padding:10,
+    fontSize:22,
+    height: 50,
+    borderBottomColor: '#ccc',
+    borderBottomWidth:1
+  }
 
   
 });
