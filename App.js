@@ -1,44 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, ActivityIndicator, View, FlatList} from 'react-native';
 import { useState } from 'react';
 
 
-const width = Dimensions.get('window').width /*Aqui se obtiene el ancho del dispositivo con Dimensions.  */
-//const {width, height} = Dimensions.get('window')
-
-//Shadow Variable, tiene el mismo nombre las variables. Pero se toma el valor que hace referencia
-
-//Buena practica no tener tantas, variables como shadows, por que no se confunde.
+const width = Dimensions.get('window').width 
 
 
 export default function App() {
  
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true) 
-
-  //{} contiene los efectos,[] contiene la data
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(data => {
-      setUsers(data)
-      setLoading(false)
-    })
-  }, [])
-
-  if(loading){
-    return <View><Text>Loading... </Text></View>
-  }
+  
 
 
   return (
     <View style={styles.container}>
-      <Text>Loaded</Text>
-      <FlatList 
-        data = {users}
-        rendetItem={({item}) => <Text>{item.name}</Text>}
-        keyExtractor = {item => String(item.id)}
-      />
+        <ActivityIndicator size="large" color ="#0000ff" />
     </View>
     //Importante tener un KeyExtractor and, render Item
   );
