@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, Button, TouchableHighlight, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
 import { useState } from 'react';
 
 
@@ -17,21 +17,16 @@ export default function App() {
   const [submit, setSubmit] = useState('')
   return (
     <View style={styles.container}>
-     <Text>Texto: {text} </Text>
-     <TextInput style={styles.input}  
-                placeholder='Write a message' 
-                onChangeText = {t => setText(t)}
-                defaultValue= {text}
-      /> 
-
-      <TouchableNativeFeedback
-        background = {TouchableNativeFeedback.Ripple('#00F', true)}
-        onPress={() => {
-        setSubmit(text)
-        alert('Texto enviado')
-      }}>
-       <View style={styles.view}><Text>Aceptar</Text></View>
-      </TouchableNativeFeedback>
+      <FlatList style={style.container}
+      data={[
+        {key: 1},
+        {key: 2},
+        {key: 3},
+        {key: 4},
+        {key: 5},
+      ]}
+      renderItem={({item}) => <Text>{item.key}</Text>} 
+      />
     
     </View>
     
@@ -54,6 +49,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     textAlign: 'center'
-  }
+  },
+
   
 });
