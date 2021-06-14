@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, Text, View, FlatList, SectionList} from 'react-native';
 import { useState } from 'react';
 
 
@@ -9,34 +9,44 @@ const width = Dimensions.get('window').width /*Aqui se obtiene el ancho del disp
 //Shadow Variable, tiene el mismo nombre las variables. Pero se toma el valor que hace referencia
 
 //Buena practica no tener tantas, variables como shadows, por que no se confunde.
+const DATA = [
+  {
+    title: "Main dishes",
+    data: ["Pizza", "Burger", "Risotto"]
+  },
+  {
+    title: "Sides",
+    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+  },
+  {
+    title: "Drinks",
+    data: ["Water", "Coke", "Beer"]
+  },
+  {
+    title: "Desserts",
+    data: ["Cheese Cake", "Ice Cream"]
+  }
+];
+const Item = ({ title }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
 export default function App() {
-  //Aqui se cambia, y se envia. Se actualiza y a la misma vez se actualiza 
-  //U
+ 
   
   const [text, setText] = useState('Happy Snorlax')
   const [submit, setSubmit] = useState('')
   return (
     <View style={styles.container}>
-      <FlatList style={style.container}
-      data={[
-        {key: '1', name:'Jorge'},
-        {key: '2', name:'Miranda'},
-        {key: '3', name:'Ruben'},
-        {key: '4', name:'Valencia'},
-        {key: '5', name:'Abri'},
-        {key: '6', name:'Jorge'},
-        {key: '7', name:'Miranda'},
-        {key: '8', name:'Ruben'},
-        {key: '9', name:'Valencia'},
-        {key: '10', name:'Abri'},
-        {key: '11', name:'Jorge'},
-        {key: '12', name:'Miranda'},
-        {key: '13', name:'Ruben'},
-        {key: '14', name:'Valencia'},
-        {key: '15', name:'Abri'},
-      ]}
-      renderItem={({item}) => <Text>{item.key}</Text>} 
-      />
+      <SectionList
+      sections={DATA}
+      keyExtractor={(item, index) => item + index}
+      renderItem={({ item }) => <Item title={item} />}
+      renderSectionHeader={({ section: { title } }) => (
+        <Text style={styles.header}>{title}</Text>
+      )}
+    />
     
     </View>
     
