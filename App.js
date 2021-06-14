@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, FlatList, SectionList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
 import { useState } from 'react';
 
 
@@ -9,51 +9,48 @@ const width = Dimensions.get('window').width /*Aqui se obtiene el ancho del disp
 //Shadow Variable, tiene el mismo nombre las variables. Pero se toma el valor que hace referencia
 
 //Buena practica no tener tantas, variables como shadows, por que no se confunde.
-const DATA = [
-  {
-    title: "Main dishes",
-    data: ["Pizza", "Burger", "Risotto"]
-  },
-  {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
-  },
-  {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"]
-  },
-  {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"]
-  }
-];
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+
+
 export default function App() {
  
-  
-  const [text, setText] = useState('Happy Snorlax')
-  const [submit, setSubmit] = useState('')
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true) 
+
+  //{} contiene los efectos,[] contiene la data
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      setUsers(data)
+      setLoading(false)
+    })
+  }, [])
+
+  if(loading){
+    return <View><Text>Loading... </Text></View>
+  }
+
+
   return (
     <View style={styles.container}>
-      <SectionList
-      sections={DATA}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Item title={item} />}
-      renderSectionHeader={({ section: { title } }) => (
-        <Text style={styles.header}>{title}</Text>
-      )}
-    />
-    
+      <Text>Loaded</Text>
+      <FlatList 
+        data = {users}
+        rendetItem={({item}) => <Text>{item.name}</Text>}
+        keyExtractor = {item => String(item.id)}
+      />
     </View>
     //Importante tener un KeyExtractor and, render Item
   );
 }
 
 const styles = StyleSheet.create({
+  center:{
+    {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
   view:{
     flex:0.5
   },
